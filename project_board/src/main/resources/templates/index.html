@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>	
+
+    <nav class="nav">
+      <div class="nav-left">
+        <a th:href="@{/}">홈</a>
+      </div>
+      
+	  <div class="nav-right">
+		<div class="search-box">
+	      <form th:action="list" method="get" name="search" class="search-from">
+		    <input type="text" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
+			<input type="submit" value="검색">
+		  </form>
+	    </div>
+		  
+		<th:block th:if="${user_id} != null">
+		  <p th:text="|${nickname} 님|"></p>
+		</th:block>
+		
+	    <a th:if="${user_id} == null" class="mypage-btn" th:href="@{|/signin|}">
+	      <i class="fa-regular fa-user fa-4x"></i>
+	      <p>로그인</p>
+	    </a>
+	
+		<a th:if="${user_id} != null" class="mypage-btn" th:href="@{|/signout|}">
+		  <p>로그아웃</p>
+		</a>
+		  
+	  </div>
+
+    </nav>
+	<a th:if="${user_id} != null" th:href="@{/board}">글 작성</a>
+
+    <section class="board">
+
+    </section>
+	
+  </body>
+</html>

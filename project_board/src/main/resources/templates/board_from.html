@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>	
+    <nav></nav>
+
+    <div class="sign-wrapper">
+      <h2>글</h2>	  
+      <input type="text" name="title" id="title" placeholder="제목 입력">
+      <div id="content" contentEditable="true"></div>
+    </div>  
+    
+    <button type="submit" class="btn1" id="submit-btn" onclick="board_submit()">등록</button>
+	
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="/js/board.js"></script>
+
+  </body>
+</html>

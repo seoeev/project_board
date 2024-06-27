@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<insert id="insert">
+		insert into board(title, content, create_date, user_id)
+		values(#{title},#{content},#{create_date}, #{user_id})
+		
+			<selectKey keyProperty="board_id" resultType="int" order="AFTER" >
+				select LAST_INSERT_ID()
+			</selectKey>	
+	</insert>
+
+ 	<select id="getBoard" resultType="com.example.test.board.dto.BoardDTO">
+		select *
+		from board
+		where board_id = #{board_id}
+	</select>
+
+
+</mapper>

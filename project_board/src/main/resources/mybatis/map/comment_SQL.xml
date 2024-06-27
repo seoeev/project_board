@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+	<insert id="insert">
+		insert into comment(content, create_date, user_id, board_id)
+		values(#{content},#{create_date}, #{user_id}, #{board_id})		
+	</insert>
+
+ 	<select id="getAllComment" resultType="com.example.test.board.dto.CommentDTO">
+		select *
+		from comment
+		where board_id = #{board_id}
+	</select>
+
+
+</mapper>

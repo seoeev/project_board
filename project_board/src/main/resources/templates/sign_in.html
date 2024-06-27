@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/default_layout}" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>	
+	
+	<div class="login-wrapper">
+	  <a th:href="@{/}">홈</a>
+      <h2><a th:href="@{/signin}">로그인</a></h2>
+	  <div style="color:red" th:text="${errorMessage}"></div>
+					
+      <form method="post" name="login_form" th:action="@{/signin/result}" id="login-form">
+      	<input type="email" id="user_id" name="user_id" placeholder="아이디">
+        <input type="password" id="password" name="password" placeholder="비밀번호">
+        <button id="login-btn" type="button" onclick="checkValue();" value="로그인">로그인</button>
+      </form>
+	  <button type="button" class="btn" th:onclick="|location.href='@{/signup}'|">회원가입</button>		
+    </div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		function checkValue(){
+			let value = $('#user_id').val().trim();
+			
+			if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length ) ){
+				$("#user_id").focus();
+				return;
+			}
+			
+			value = $('#password').val().trim();
+			if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length ) ){
+				$("#zip_code").focus();
+				return;
+			}
+			document.login_form.submit();
+		}
+    </script>
+
+  </body>
+</html>
