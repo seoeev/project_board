@@ -8,27 +8,29 @@
   <body>	
     
 	<section class="singup">
-		<div class="container">							
-			<h2>회원 가입</h2>
+	  <div class="container">							
+		<h2>회원 가입</h2>
 
-			<form method="post" th:action="@{/user/insert}" id="signin-form">
-				<label for="">
-					<input type="text" name="email" id="email" placeholder="아이디 ex)abc12@gmail.com">
-					<p id="emailchk">아이디는 이메일 형식으로 입력해 주세요.</p>
-				</label>
-				<label>
-					<input type="password" id="password" name="password" placeholder="비밀 번호">
-					<p id="pwchk" >영문과 숫자를 포함한 8~16자</p>
-				</label>
-				<label>
-					<input type="password" id="password2" name="password2" placeholder="비밀 번호 확인">
-					<p id="pw2chk">비밀 번호를 한 번 더 입력해 주세요.</p>
-				</label>
-				<label>
-					<input type="text" id="nickname" name="nickname" placeholder="닉네임">
-					<p id="nicknamechk">사이트에서 사용하실 닉네임을 입력해 주세요.(2~6자)</p>
-				</label>
-				<input type="submit" value="회원가입" class="btn" id="submit-btn" disabled>
+		<form method="post" th:action="@{/user/insert}" id="signin-form">
+			<label for="">
+				<input type="text" name="email" id="email" placeholder="아이디 ex)abc12@gmail.com">
+				<p id="emailchk">아이디는 이메일 형식으로 입력해 주세요.</p>
+			</label>
+			<label>
+				<input type="password" id="password" name="password" placeholder="비밀 번호">
+				<p id="pwchk" >영문과 숫자를 포함한 8~16자</p>
+			</label>
+			<label>
+				<input type="password" id="password2" name="password2" placeholder="비밀 번호 확인">
+				<p id="pw2chk">비밀 번호를 한 번 더 입력해 주세요.</p>
+			</label>
+			<label>
+				<input type="text" id="nickname" name="nickname" placeholder="닉네임">
+				<p id="nicknamechk">사이트에서 사용하실 닉네임을 입력해 주세요.(2~6자)</p>
+			</label>
+			<input type="submit" value="회원가입" class="btn" id="submit-btn" disabled>
+			
+		  </form>
 		</div>
 	</section>
 

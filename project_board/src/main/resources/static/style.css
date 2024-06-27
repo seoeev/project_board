@@ -355,6 +355,7 @@ header .nav-right .search-box #submit-btn {
 }
 
 .singup .container form label p {
+  margin-top: .4rem;
   text-align: right;
 }
 

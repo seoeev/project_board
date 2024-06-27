@@ -7,25 +7,25 @@
   </head>
   <body>	
 	
-		<section class="login">
-			<div class="container">
-				<h2><a th:href="@{/signin}">로그인</a></h2>
-				<div style="color:red" th:text="${errorMessage}"></div>
-								
-				<form method="post" name="login_form" th:action="@{/signin/result}" id="login-form">
-					<label for="user_id">
-						<span>아이디</span>
-						<input type="email" id="user_id" name="user_id" placeholder="아이디">
-					</label>
-					<label for="password">
-						<span>비밀번호</span>
-						<input type="password" id="password" name="password" placeholder="비밀번호">
-					</label>
-				</form>
-				<button id="login-btn" class="btn" type="button" onclick="checkValue();" value="로그인">로그인</button>
-				<button type="button" th:onclick="|location.href='@{/signup}'|">회원가입</button>		
-			</div>
-		</section>
+	<section class="login">
+		<div class="container">
+			<h2><a th:href="@{/signin}">로그인</a></h2>
+			<div style="color:red" th:text="${errorMessage}"></div>
+							
+			<form method="post" name="login_form" th:action="@{/signin/result}" id="login-form">
+				<label for="user_id">
+					<span>아이디</span>
+					<input type="email" id="user_id" name="user_id" placeholder="아이디">
+				</label>
+				<label for="password">
+					<span>비밀번호</span>
+					<input type="password" id="password" name="password" placeholder="비밀번호">
+				</label>
+			</form>
+			<button id="login-btn" class="btn" type="button" onclick="checkValue();" value="로그인">로그인</button>
+			<button type="button" th:onclick="|location.href='@{/signup}'|">회원가입</button>		
+		</div>
+	</section>
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>

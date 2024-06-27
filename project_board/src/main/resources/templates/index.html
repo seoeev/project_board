@@ -14,7 +14,7 @@
       
 	  	<div class="nav-right">
 		  <div class="search-box">
-	      	<form th:action="list" method="get" name="search" class="search-from">
+	      	<form th:action method="get" name="search" class="search-from">
 		      <input type="search" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
 				<button id="submit-btn">검색</button>
 		  	</form>
@@ -46,7 +46,6 @@
 		<th:block th:each="board,index : ${boardList}" >
 		  <div class="board-box" th:id="${board.board_id}" th:onclick="|location.href='@{/board/detail/}${board.board_id}'|">
 			<p class="index" th:text="${index.index}+1">1</p>
-			<c:out value="${totalPages - ((pageMaker.cri.pageNum - 1) * pageMaker.cri.amount + status.index)}"/>
 <!--			<div class="img-box">
 				<img src="" alt="">
 			</div>-->
