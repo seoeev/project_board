@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>	
-    <nav></nav>
 
-    <div class="sign-wrapper">
-      <h2>글</h2>	  
-      <input type="text" name="title" id="title" placeholder="제목 입력">
-      <div id="content" contentEditable="true"></div>
-    </div>  
-    
-    <button type="submit" class="btn1" id="submit-btn" onclick="board_submit()">등록</button>
-	
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="/js/board.js"></script>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/style.css" />
+</head>
 
-  </body>
+<body>
+	<header>
+		<div class="nav-left">
+			<a th:href="@{/}">홈</a>
+		</div>
+
+		<div class="nav-right">
+			<div class="search-box">
+				<form th:action="list" method="get" name="search" class="search-from">
+					<input type="search" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
+					<button id="submit-btn">검색</button>
+				</form>
+			</div>
+
+			<div class="info">
+				<th:block th:if="${user_id} != null">
+					<p th:text="|${nickname} 님|"></p>
+				</th:block>
+				<a th:if="${user_id} == null" class="mypage-btn" th:href="@{|/signin|}">
+					<i class="fa-regular fa-user fa-4x"></i>
+					<p>로그인</p>
+				</a>
+				<a th:if="${user_id} != null" class="mypage-btn" th:href="@{|/signout|}">
+					<p>로그아웃</p>
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<section class="board-form">
+		<div class="container">
+			<input type="hidden" id="board_id" th:value="${board.board_id}">
+			<input type="text" name="title" id="title" placeholder="제목 입력" th:value="${board.title}">
+			<div class="content" id="board_content" contentEditable="true" th:utext="${board.content}"></div>
+		</div>
+		<label id="friend-check" for="is_friend_only">
+			<input type="checkbox" name="is_friend_only" id="is_friend_only"  value="Y" th:checked="${board.is_friend_only == 'Y'}">
+			<span>친구에게만 공개</span>
+		</label>
+		<button type="submit" class="btn" id="submit-btn" onclick="board_submit()">등록</button>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="/js/board.js"></script>
+
+</body>
+
 </html>

@@ -1,0 +1,548 @@
+
+/* ==CSS 초기화=== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{
+  text-decoration: none;
+  outline: none;
+}
+/* ============================================ */
+
+/* ===== 기본 설정 ===== */
+
+:root {
+  --main-color: #5ba4f8;
+  --sub-color: #e4eeec;
+  --black: #3B3831;
+  --brown: #605353;
+  --red: #E10000;
+  --light_gray: #e9e9e9;
+  --gray: #A6A6A6;
+  --border: .2rem solid rgba(132, 161, 179, 0.3);
+  --box-shadow-gray: 0px 2px 1px 1px rgba(110, 110, 110, 0.123);
+  --bg: #130707;
+  --white: #fff;
+  --select-btn : rgb(253, 206, 136);
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 62.5%;
+  overflow-x: hidden;
+  color: var(--black);
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+.point{
+  color: var(--main-color);
+}
+
+.btn {
+  margin: 1rem 4rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
+
+  display: inline-block;
+  background-color: var(--main-color);
+  border: var(--border);
+  border-radius: 1rem;
+
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-use-select: none;
+  user-select: none;
+}
+
+
+/* ===== 기본 설정 end ===== */
+
+
+/* ===== header ===== */
+header {
+  padding: 3rem 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  
+  border-bottom: var(--border);
+}
+
+header .nav-right{
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* 검색 창 */
+header .nav-right .search-box {
+  border: var(--border);
+  border-radius: .5rem; 
+  cursor: pointer;
+  color: var(--gray);
+  margin-right: 50px;
+}
+
+header .nav-right .search-box .search-from {
+  width: 300px;
+  border-radius: 10px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+header .nav-right .search-box input {
+  padding: 0 10px;
+  height: 30px;
+  width: 80%;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+header .nav-right .search-box input:focus {
+  outline: 0px;
+}
+
+
+header .nav-right .search-box #submit-btn {
+  border: 1px solid rgba(255, 202, 99, .3);
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+/* 검색창 끝 */
+
+/* ===== header End ===== */
+
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+  margin-bottom: 10rem;
+}
+
+.container h1{
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.container .board-list{
+  padding: 2rem 30rem;
+}
+
+.container .board-list .board-box{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  border: var(--border);
+  padding: 2rem;
+}
+
+.container .board-list .board-box .index{
+  flex-grow: 0;
+  margin-right: 2rem;
+}
+
+.container .board-list .board-box .img-box{
+  flex-grow: 0;
+  margin-right: 2rem;
+}
+
+.container .board-list .board-box .title{
+  flex-grow: 1;
+}
+
+.container .board-list .board-box .date{
+  flex-grow: 0;
+}
+
+.container .board-list .board-box .img-box{
+  height: 3rem;
+  width: 3rem;
+  background-color: #5ba4f8;
+}
+
+.container .board-list .board-box .img-box img{
+  width: 100%;
+  height: 100%;
+  background-color: #5ba4f8;
+}
+
+
+.container .board-list .page-nav{
+	font-size: 2rem;
+}
+
+.container .board-list .page-nav ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .board-list .page-nav ul li{
+	padding: 1rem;
+	margin: .5rem;
+	border-radius: .3rem;
+  background-color:#e9e9e9;
+}
+
+
+
+/* ========== 로그인 ============ */
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 3rem;
+  margin: 4rem 0;
+  background-color: var(--sub-color);
+  border-radius: 1rem;
+}
+
+.login .container form{
+  width: 50%;
+  margin: 2rem;
+  font-size: 1.5rem;
+}
+
+.login .container form label{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.login .container form label span {
+  padding: 0 10px;
+  height: 30px;
+  width: 20%;
+  margin-right: 2rem;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.login .container form label input {
+  padding: 0 10px;
+  height: 30px;
+  width: 80%;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.login .container .btn{
+  width: 50%;
+  margin-top: -2rem;
+}
+
+/* ========== 로그인 끝 ============ */
+
+
+/* ========== 회원가입 ============ */
+
+.singup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.singup .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 3rem;
+  margin: 4rem 0;
+  background-color: var(--sub-color);
+  border-radius: 1rem;
+}
+
+.singup .container form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+  width: 50%;
+  font-size: 1.5rem;
+
+  padding: 1rem;
+}
+.singup .container form label {
+  margin: 1rem;
+}
+
+.singup .container form label input {
+  padding: 0 10px;
+  height: 30px;
+  width: 100%;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.singup .container form label p {
+  text-align: right;
+}
+
+
+/* ========== 회원가입 끝 ============ */
+
+
+/* ========== 게시판 작성 폼 ============ */
+
+.board-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.board-form .container{
+  width: 80%;
+  padding: 3rem;
+}
+
+.board-form .container h2{
+  text-align: left;
+  font-size: 3.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.board-form .container input{
+  padding: 2rem;
+  font-size: 3rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.board-form .container .content{
+  border: var(--border);
+  font-size: 1.7rem;
+  height: 50rem;
+  padding: 2rem;
+  overflow:auto;
+}
+
+.board-form .container .content img {
+  max-width: 100%;
+}
+
+.board-form  #friend-check span{
+  font-size: 1.7rem;
+}
+
+
+
+/* ========== 게시판 작성 끝 ============ */
+
+
+/* ========== 게시판 상세 ============ */
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.board .container{
+  width: 80%;
+  padding: 3rem;
+}
+
+.board .container .top{
+  border-bottom: var(--border);
+}
+
+.board .container .top h1{
+  text-align: left;
+  font-size: 3.5rem;
+}
+
+.board .container .content{
+  padding: 3rem;
+  font-size: 1.7rem;
+  line-height: 3rem;
+}
+
+.board .container .bottom{
+  border-top: var(--border);
+  margin-top: 4rem;  
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 3rem;
+}
+
+.board .container .bottom a{
+	cursor: pointer;	
+	color: var(--main-color);
+}
+
+/* ========== 게시판 상세 끝 ============ */
+
+
+
+/* ======== 댓글 ========= */
+
+.comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.comment .container{
+  width: 80%;
+  padding: 3rem;
+  background-color: #eeeeee;
+}
+
+.comment .container .comment-form{
+  width: 100%;
+}
+
+.comment .container .comment-form form{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.comment .container .comment-form form textarea {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  width: 80%;
+  height: 15rem;
+  border: 0;
+  font-size: 1.7rem;
+  padding: 1rem;
+  resize: none;
+}
+
+.comment .container .comment-form form input {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  
+  background-color: var(--main-color);
+  width: 20%;
+  border: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+
+
+.comment .container .comment-list{
+
+  margin: 2rem;
+  font-size: 1.7rem;
+}
+
+.comment .container .comment-list .comment-box{
+  padding: 4rem;
+  border-bottom: var(--border);
+}
+
+.comment .container .comment-list .comment-box .top{
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: var(--border);
+}
+
+.comment .container .comment-list .comment-box .top .left{
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment .container .comment-list .comment-box .top .left p:first-child{
+  margin-right: 2rem;
+}
+
+.comment .container .comment-list .comment-box .bottom{
+  padding: 1rem;
+}
+
+
+
+/* ======== 댓글 끝 ========= */

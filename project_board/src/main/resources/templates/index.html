@@ -3,42 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>	
 
-    <nav class="nav">
+    <header>
       <div class="nav-left">
         <a th:href="@{/}">홈</a>
       </div>
       
-	  <div class="nav-right">
-		<div class="search-box">
-	      <form th:action="list" method="get" name="search" class="search-from">
-		    <input type="text" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
-			<input type="submit" value="검색">
-		  </form>
-	    </div>
-		  
-		<th:block th:if="${user_id} != null">
-		  <p th:text="|${nickname} 님|"></p>
+	  	<div class="nav-right">
+		  <div class="search-box">
+	      	<form th:action="list" method="get" name="search" class="search-from">
+		      <input type="search" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
+				<button id="submit-btn">검색</button>
+		  	</form>
+	      </div>
+				
+		  <div class="info">
+			<th:block th:if="${user_id} != null">
+				<p th:text="|${nickname} 님|"></p>
+			</th:block>
+			<a th:if="${user_id} == null" class="mypage-btn" th:href="@{|/signin|}">
+			  <p>로그인</p>
+			</a>				
+			<a th:if="${user_id} != null" class="mypage-btn" th:href="@{|/signout|}">
+			  <p>로그아웃</p>
+			</a>					
+		  </div>
+		</div>
+    </header>
+    
+	<a class="btn" th:if="${user_id} != null" th:href="@{/board}">글 작성</a>
+
+    <section class="container">
+	  <h1>게시판</h1>
+	  <div class="board-list">
+		<th:block th:if="${boardList.size <= 0}">
+			<h2>아직 게시글이 없습니다.</h2>
 		</th:block>
 		
-	    <a th:if="${user_id} == null" class="mypage-btn" th:href="@{|/signin|}">
-	      <i class="fa-regular fa-user fa-4x"></i>
-	      <p>로그인</p>
-	    </a>
-	
-		<a th:if="${user_id} != null" class="mypage-btn" th:href="@{|/signout|}">
-		  <p>로그아웃</p>
-		</a>
-		  
+		<th:block th:each="board,index : ${boardList}" >
+		  <div class="board-box" th:id="${board.board_id}" th:onclick="|location.href='@{/board/detail/}${board.board_id}'|">
+			<p class="index" th:text="${index.index}+1">1</p>
+			<c:out value="${totalPages - ((pageMaker.cri.pageNum - 1) * pageMaker.cri.amount + status.index)}"/>
+<!--			<div class="img-box">
+				<img src="" alt="">
+			</div>-->
+			<p class="title" th:text="${board.title}">제목222222222222222222244444444444444422</p>
+			<p class="date" th:text="|${#temporals.format(board.create_date, 'yyyy-MM-dd')}|">2022-20-31</p>
+		  </div>
+		</th:block>
+		
+		<nav class="page-nav">
+		    <ul>
+		    	<li th:each="i : ${#numbers.sequence(1, totalPages)}">
+		            <a th:href="@{|/?page=${i}&size=${5}|}" th:text="${i}"></a>
+		        </li>
+		    </ul>
+		</nav>
+		
 	  </div>
 
-    </nav>
-	<a th:if="${user_id} != null" th:href="@{/board}">글 작성</a>
-
-    <section class="board">
 
     </section>
 	

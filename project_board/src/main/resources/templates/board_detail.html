@@ -1,69 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>	
-  
-	<section class="board">
-    <div class="top">
-      <h2 th:text="${board.title}">제목 입니다.</h2>
-    </div>
-    <div class="content">
-      <div contenteditable="false" th:utext="${board.content}">
-        내용 입니다.
-      </div>
-    </div>
 
-    <div class="bottom">
-		<th:block th:if="${user_id} == ${board.user_id}">
-	      <a href="">수정</a>
-	      <a href="">삭제</a>
-		</th:block>
-    </div>
-  </section>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+	<header>
+		<div class="nav-left">
+			<a th:href="@{/}">홈</a>
+		</div>
+
+		<div class="nav-right">
+			<div class="search-box">
+				<form th:action="list" method="get" name="search" class="search-from">
+					<input type="search" name="content" id="content" th:value="${content}" placeholder="게시물 검색" />
+					<button id="submit-btn">검색</button>
+				</form>
+			</div>
+
+			<div class="info">
+				<th:block th:if="${user_id} != null">
+					<p th:text="|${nickname} 님|"></p>
+				</th:block>
+				<a th:if="${user_id} == null" class="mypage-btn" th:href="@{|/signin|}">
+					<i class="fa-regular fa-user fa-4x"></i>
+					<p>로그인</p>
+				</a>
+				<a th:if="${user_id} != null" class="mypage-btn" th:href="@{|/signout|}">
+					<p>로그아웃</p>
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<section class="board">
+		<div class="container">
+			<div class="top">
+				<h1 th:text="${board.title}">제목 입니다.</h1>
+			</div>
+			<div class="content">
+				<div class="box" contenteditable="false" th:utext="${board.content}">
+					내용 입니다.
+				</div>
+			</div>
+
+			<div class="bottom">
+				<p th:text="|작성자 ${board.member.nickname}(${board.member.email})|">닉네임</p>
+				<p th:text="|작성일자	${#temporals.format(board.create_date, 'yyyy-MM-dd HH:mm:ss')}|">등록 날짜</p>
+				<div>
+					<th:block th:if="${user_id} == ${board.user_id}">
+						<a th:href="|@{/board/modify}/${user_id}/${board.board_id}|">수정</a>
+						<a th:onclick="|deleteBoard(${board.board_id})|">삭제</a>
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<section class="comment">
-    <h2>댓글 <span th:text="${commentList.size}">(1)</span></h2>
+		<div class="container">
+			<h2>댓글 <span th:text="${commentList.size}">(1)</span></h2>
 
-    <div class="comment-form">
-      <form method="post" th:action="|@{/comment/insert/}${board.board_id}|" >
-          <input type="text" name="content" id="content">
-          <input type="submit" value="등록">
-      </form>  
-    </div> 
+			<div class="comment-form">
+				<form method="post" th:action="|@{/comment/insert/}${board.board_id}|">
+					<textarea name="content" id="content"></textarea>
+					<input type="submit" value="등록">
+				</form>
+			</div>
 
-    <div class="comment-list">
+			<div class="comment-list">
+				<th:block th:each="comment,index : ${commentList}">
+					<div class="comment-box">
 
-	<th:block th:each="comment,index : ${commentList}" >
-      <div class="comment-box">
-        <div class="top">
-          <div class="left">
-            <p th:text="${comment.user_id}">닉네임</p>
-            <p th:text="${comment.create_date}">등록 날짜</p>
-          </div>
-		  <th:block th:if="${user_id} == ${comment.user_id}">
-	         <div class="right">
-	           <a href="">수정</a>
-	           <a href="">삭제</a>
-	         </div>		
-		  </th:block>
-        </div>
-        <div class="bottom">
-          <div th:utext="${comment.content}">댓글 내용</div>
-        </div>
-      </div>
-	</th:block>
+						<div class="top">
+							<div class="left">
+								<p th:text="${comment.member.nickname}">닉네임</p>
+								<p th:text="${#temporals.format(comment.create_date, 'yyyy-MM-dd HH:mm:ss')}">등록 날짜</p>
+							</div>
 
-    </div>
+							<th:block th:if="${user_id} == ${comment.user_id}">
+								<div class="right">
+									<a href="">수정</a>
+									<a href="">삭제</a>
+								</div>
+							</th:block>
 
-  </section>
+						</div>
 
-	
+						<div class="bottom">
+							<div th:utext="${comment.content}">댓글 내용</div>
+						</div>
+
+					</div>
+				</th:block>
+
+
+			</div>
+		</div>
+	</section>
+
+
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script src="/js/join_check.js"></script>
+	<script src="/js/board.js"></script>
 
-  </body>
+</body>
+
 </html>

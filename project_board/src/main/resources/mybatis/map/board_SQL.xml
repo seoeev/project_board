@@ -3,8 +3,8 @@
 <mapper namespace="board">
 
 	<insert id="insert">
-		insert into board(title, content, create_date, user_id)
-		values(#{title},#{content},#{create_date}, #{user_id})
+		insert into board(title, content, create_date, user_id, is_friend_only)
+		values(#{title},#{content},#{create_date}, #{user_id}, #{is_friend_only})
 		
 			<selectKey keyProperty="board_id" resultType="int" order="AFTER" >
 				select LAST_INSERT_ID()
@@ -16,6 +16,28 @@
 		from board
 		where board_id = #{board_id}
 	</select>
-
+	
+ 	<select id="getBoardList" resultType="com.example.test.board.dto.BoardDTO">
+		  SELECT * FROM board
+		ORDER BY create_date DESC
+		   LIMIT #{size} OFFSET #{offset}
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select> 
+  
+	<update id="updateBoard">
+	   UPDATE board
+	      SET title = #{title},
+	      	  content = #{content},
+	          is_friend_only = #{is_friend_only}
+	       WHERE board_id = #{board_id}
+	</update>	
+	
+	<delete id="deleteBoard">
+		delete from board
+		where board_id = #{board_id}
+	</delete>
 
 </mapper>

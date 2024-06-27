@@ -61,7 +61,7 @@ public class MemberController {
 				return "redirect:/";
 			}else {
 				model.addAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
-				return "/sign_in";
+				return "sign_in";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -96,7 +96,7 @@ public class MemberController {
 		// 유저 데이터 insert
 		memberService.insert(user);
 
-		return "/sign_in";
+		return "redirect:/signin";
 	}
 
 	

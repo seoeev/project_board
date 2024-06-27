@@ -33,5 +33,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.signin", user);
 	}
 
+	// user_id로 정보 가져오기(비번X)
+	public MemberDTO getUserInfo(Integer user_id) {
+		return sqlSession.selectOne("member.getUserInfo", user_id);
+	}
+
 
 }

@@ -33,27 +33,29 @@ public class BoardController {
 	
 	
 	@GetMapping("")
-	public String showBoardFrom() {
+	public String showBoardFrom(Model model) {
+		BoardDTO board = new BoardDTO();
+		model.addAttribute("board", board);
 		return "board_from";
 	}
 	
 	// 게시물 등록
 	@RequestMapping(value="/insertBoard" ,method = RequestMethod.POST)
 	@ResponseBody
-	public Integer idcheck(HttpSession session, @RequestParam(value="title") String title, @RequestParam(value="content") String content) {
+	public Integer insertBoard(HttpSession session, @RequestParam(value="title") String title, 
+												@RequestParam(value="content") String content, 
+												@RequestParam(value="is_friend_only") Character is_friend_only) {
 
 		BoardDTO board = new BoardDTO();
 		board.setUser_id((Integer) session.getAttribute("user_id"));
 		board.setTitle(title);
 		board.setContent(content);
 		board.setCreate_date(LocalDateTime.now());
+		board.setIs_friend_only(is_friend_only);
 		
 		boardService.insertBoard(board);
 		return board.getBoard_id();
 	}
-	
-
-	
 	
 
 	// 게시물 상세 페이지
@@ -71,6 +73,44 @@ public class BoardController {
 		model.addAttribute("commentList", commentList);
 		
 		return "board_detail";
+	}
+	
+	
+	// 게시물 상세 페이지
+	@GetMapping("/modify/{user_id}/{board_id}")
+	public String modifyBoard(Model model, @PathVariable("user_id") Integer user_id, @PathVariable("board_id") Integer board_id) {						
+		// 게시글 정보 불러오기
+		BoardDTO board = boardService.findById(board_id);
+		model.addAttribute("board", board);
+		
+		return "board_from";
+	}
+	
+	
+	// 게시물 수정
+	@RequestMapping(value="/updateBoard" ,method = RequestMethod.POST)
+	@ResponseBody
+	public Integer updateBoard(HttpSession session, @RequestParam(value="title") String title, 
+												@RequestParam(value="content") String content, 
+												@RequestParam(value="is_friend_only") Character is_friend_only,
+												@RequestParam(value="board_id") Integer board_id) {
+
+		BoardDTO board = new BoardDTO();
+		board.setBoard_id(board_id);
+		board.setUser_id((Integer) session.getAttribute("user_id"));
+		board.setTitle(title);
+		board.setContent(content);
+		board.setIs_friend_only(is_friend_only);
+		
+		boardService.updateBoard(board);
+		return board.getBoard_id();
+	}
+	
+	@GetMapping("/delete/{board_id}")
+	public String deleteBoard(@PathVariable("board_id") Integer board_id) {						
+		boardService.deleteBoard(board_id);
+		
+		return "redirect:/";
 	}
 	
 	
